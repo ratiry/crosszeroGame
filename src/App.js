@@ -3,6 +3,7 @@ import { BrowserRouter, Routes,Route } from 'react-router-dom';
 import classes from './App.module.scss';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import Game from './components/Content/Game/Game';
 import Welcome from './components/Content/Welcome/Welcome';
 function App() {
   
@@ -13,7 +14,7 @@ function App() {
           <div className={classes.Content}>
             <Routes>
               <Route path={'/'} element={<Welcome/>} />
-              
+              <Route path={'/Game' } element={<Game/>}/>
             </Routes>
           </div>
           <Footer/>
