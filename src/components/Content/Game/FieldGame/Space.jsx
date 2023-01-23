@@ -19,7 +19,7 @@ let Space=(props)=>{
 ];
 let FIll_SPACE_WITH_CROSS=()=>{
   if(!IsOccupied){
-    props.FILL_SPACE_WITH_CROSS_AC(props.id);
+    props.PlayersMoveThunk(props.id);
   }  
 }
   let Case=2;
