@@ -19,7 +19,6 @@ let Space=(props)=>{
 ];
 let FIll_SPACE_WITH_CROSS=()=>{
   if(!IsOccupied  & !props.result){
-    debugger;
     props.PlayersMoveThunk(props.id);
   }  
 }
