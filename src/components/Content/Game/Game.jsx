@@ -7,7 +7,7 @@ let Game=(props)=>{
   return(
     <div className={classes.Game_container}>
       <h1>Tic Tac Toe</h1>
-      <GameField cells={props.cells} occuppied_Cells={props.occuppied_Cells} FILL_SPACE_WITH_CROSS_AC={props.FILL_SPACE_WITH_CROSS_AC} FILL_SPACE_WITH_ZERO_AC={props.FILL_SPACE_WITH_ZERO_AC}  PlayersMoveThunk={props.PlayersMoveThunk} />
+      <GameField {...props} />
     </div>
   )
 }
@@ -16,6 +16,7 @@ let mapDispatchToProps={
 }
 let mapStateToProps=(state)=>({
   cells:state.cellsState.cells,
-  occuppied_Cells:state.cellsState.occuppied_Cells
+  occuppied_Cells:state.cellsState.occuppied_Cells,
+  result:state.cellsState.result
 })
 export default connect(mapStateToProps,mapDispatchToProps)(Game);

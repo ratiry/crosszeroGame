@@ -1,12 +1,10 @@
 
 let conditipnsFunction=(index,cells,occuppied_Cells,player,rows)=>{
   let result = null;
-  debugger;
   if(cells[occuppied_Cells[index].id].whose==player & cells[occuppied_Cells[index].id +1].whose==player & cells[occuppied_Cells[index].id +2].whose==player & cells[occuppied_Cells[index].id +2] !==undefined & cells[occuppied_Cells[index].id +1] !==undefined){
     result=player;
     return result;
   }
-  debugger;
 
   
 }
@@ -18,7 +16,6 @@ let conditipnsFunction=(index,cells,occuppied_Cells,player,rows)=>{
       break;
    }
   }
-  debugger;
   return result;
 }
 

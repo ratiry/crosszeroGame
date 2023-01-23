@@ -18,7 +18,8 @@ let Space=(props)=>{
   null
 ];
 let FIll_SPACE_WITH_CROSS=()=>{
-  if(!IsOccupied){
+  if(!IsOccupied  & !props.result){
+    debugger;
     props.PlayersMoveThunk(props.id);
   }  
 }
@@ -28,7 +29,6 @@ let FIll_SPACE_WITH_CROSS=()=>{
   }else if(props.whose=='cross'){
     Case=0;
   }
-
   return(
     <div className={classes.Space} onClick={FIll_SPACE_WITH_CROSS}>
       {Cases[Case]}

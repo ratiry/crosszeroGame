@@ -1,6 +1,4 @@
 import CheckForVictory from "../Helpers/CheckForVictory";
-
-
 const FILL_SPACE_WITH_ZERO='FILL_SPACE_WITH_ZERO';
 const FILL_SPACE_WITH_CROSS='FILL_SPACE_WITH_CROSS';
 const CHECK_FOR_VICTORY='CHECK_FOR_VICTORY';
@@ -47,7 +45,6 @@ let cells_reducer=(State=intialization,action)=>{
     case CHECK_FOR_VICTORY:
 
       let result= CheckForVictory(State.cells,State.occuppied_Cells,State.rows);
-      debugger;
       if(result =='cross' || result=='zero'){
         return{
           ...State,
