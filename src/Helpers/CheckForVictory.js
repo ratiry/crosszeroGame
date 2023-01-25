@@ -2,6 +2,7 @@
 
 let conditipnsFunction=(index,cells,occuppied_Cells,player,rows)=>{
   let result = null;
+  let winning_consequence=[];
   let definedHorizontalCondition=cells[occuppied_Cells[index].id +2] !==undefined & cells[occuppied_Cells[index].id +1] !==undefined;;
   let definedVerticalCondition=cells[occuppied_Cells[index].id +rows] !==undefined & cells[occuppied_Cells[index].id +rows+rows] !==undefined;;
   let definedLeftDiagonalCondition=cells[occuppied_Cells[index].id +rows+1] !== undefined & cells[occuppied_Cells[index].id +2*(rows+1)]!==undefined;
@@ -16,47 +17,48 @@ let conditipnsFunction=(index,cells,occuppied_Cells,player,rows)=>{
       let onOneRowHorizontalCondition=Math.floor(cells[occuppied_Cells[index].id].id/rows) ===Math.floor(cells[occuppied_Cells[index].id+1].id/rows) & Math.floor(cells[occuppied_Cells[index].id].id/rows ===Math.floor(cells[occuppied_Cells[index].id+2].id/rows));
       let horizontalCpndition=cells[occuppied_Cells[index].id +1].whose==player & cells[occuppied_Cells[index].id +2].whose==player;    
       if(horizontalCpndition & onOneRowHorizontalCondition){
-        debugger;
         result=player;
+        winning_consequence=[cells[occuppied_Cells[index].id].id,cells[occuppied_Cells[index].id+1].id,cells[occuppied_Cells[index].id+2].id]
+        debugger;
       }
     }
     if(definedVerticalCondition){
       let verticalCondition=cells[occuppied_Cells[index].id +rows].whose==player & cells[occuppied_Cells[index].id +rows+rows].whose==player;
       if(verticalCondition){
-        debugger;
         result=player;
+        winning_consequence=[cells[occuppied_Cells[index].id].id,cells[occuppied_Cells[index].id+rows].id,cells[occuppied_Cells[index].id+2*(rows)].id]
+        debugger;
       }
     }
     if(definedLeftDiagonalCondition){
       let LeftDiagonalCondition = cells[occuppied_Cells[index].id +rows+1].whose==player & cells[occuppied_Cells[index].id +2*(rows+1)].whose==player;
       if(LeftDiagonalCondition){
-        debugger;
         result=player;
+        winning_consequence=[cells[occuppied_Cells[index].id].id,cells[occuppied_Cells[index].id+rows+1].id,cells[occuppied_Cells[index].id+2*(rows+1)].id]
+        debugger;
+
       }
     }
     if(definedRightDiagonal){
       let RightDiagonalCondition = cells[occuppied_Cells[index].id +rows-1].whose==player & cells[occuppied_Cells[index].id +2*(rows-1)].whose==player;
-      let rowsArray=[cells[occuppied_Cells[index].id].id/rows,cells[occuppied_Cells[index].id+rows-1].id/rows,cells[occuppied_Cells[index].id+2*(rows-1)].id/rows];
+      let rowsArray=[cells[occuppied_Cells[index].id].id,cells[occuppied_Cells[index].id+rows-1].id,cells[occuppied_Cells[index].id+2*(rows-1)].id];
       let NotOnOneRow=true;
+      let forbidden_array=[3,5];
+      let counter=0;
       for(let i=0;i<rowsArray.length;i++){
-        if((rowsArray[i]+1)%rows==0){
-          rowsArray[i]=rowsArray[i]+1;
-          break;
-        }
-      }
-      for(let i=0;i<rowsArray.length;i++){
-        rowsArray[i] = Math.ceil(rowsArray[i]);
-      }
-      for(let i=0;i<rowsArray.length;i++){
-        for(let ii=0;ii<rowsArray.length;ii++){
-          if(rowsArray[i] == rowsArray[ii] & i!==ii){
+        if(rowsArray[i] ==forbidden_array[0] || rowsArray[i] ==forbidden_array[1]){
+          counter++;
+          if(counter==2){
             NotOnOneRow=false;
+            break;
           }
         }
       }
       if(RightDiagonalCondition & NotOnOneRow){
-        debugger;
+   
         result=player;
+        winning_consequence=[cells[occuppied_Cells[index].id].id,cells[occuppied_Cells[index].id+rows-1].id,cells[occuppied_Cells[index].id+2*(rows-1)].id]
+        debugger;
       }
     }
   }
