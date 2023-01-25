@@ -10,7 +10,11 @@ let intialization={
   ],
   occuppied_Cells:[],
   rows:3,
-  result:null
+  result:{
+    player:null,
+    winning_consequence:null,
+    direction:null
+  }
 }
 
 let cells_reducer=(State=intialization,action)=>{
@@ -45,7 +49,7 @@ let cells_reducer=(State=intialization,action)=>{
     case CHECK_FOR_VICTORY:
 
       let result= CheckForVictory(State.cells,State.occuppied_Cells,State.rows);
-      if(result =='cross' || result=='zero'){
+      if(result.player =='cross' || result.player=='zero'){
         return{
           ...State,
           result:result

@@ -3,6 +3,7 @@
 let conditipnsFunction=(index,cells,occuppied_Cells,player,rows)=>{
   let result = null;
   let winning_consequence=[];
+  let direction = null;
   let definedHorizontalCondition=cells[occuppied_Cells[index].id +2] !==undefined & cells[occuppied_Cells[index].id +1] !==undefined;;
   let definedVerticalCondition=cells[occuppied_Cells[index].id +rows] !==undefined & cells[occuppied_Cells[index].id +rows+rows] !==undefined;;
   let definedLeftDiagonalCondition=cells[occuppied_Cells[index].id +rows+1] !== undefined & cells[occuppied_Cells[index].id +2*(rows+1)]!==undefined;
@@ -13,13 +14,12 @@ let conditipnsFunction=(index,cells,occuppied_Cells,player,rows)=>{
   
   if(cells[occuppied_Cells[index].id].whose===player){
     if(definedHorizontalCondition){
-
       let onOneRowHorizontalCondition=Math.floor(cells[occuppied_Cells[index].id].id/rows) ===Math.floor(cells[occuppied_Cells[index].id+1].id/rows) & Math.floor(cells[occuppied_Cells[index].id].id/rows ===Math.floor(cells[occuppied_Cells[index].id+2].id/rows));
       let horizontalCpndition=cells[occuppied_Cells[index].id +1].whose==player & cells[occuppied_Cells[index].id +2].whose==player;    
       if(horizontalCpndition & onOneRowHorizontalCondition){
         result=player;
         winning_consequence=[cells[occuppied_Cells[index].id].id,cells[occuppied_Cells[index].id+1].id,cells[occuppied_Cells[index].id+2].id]
-        debugger;
+        direction='horizontal';
       }
     }
     if(definedVerticalCondition){
@@ -27,7 +27,7 @@ let conditipnsFunction=(index,cells,occuppied_Cells,player,rows)=>{
       if(verticalCondition){
         result=player;
         winning_consequence=[cells[occuppied_Cells[index].id].id,cells[occuppied_Cells[index].id+rows].id,cells[occuppied_Cells[index].id+2*(rows)].id]
-        debugger;
+        direction='vertical';
       }
     }
     if(definedLeftDiagonalCondition){
@@ -35,7 +35,7 @@ let conditipnsFunction=(index,cells,occuppied_Cells,player,rows)=>{
       if(LeftDiagonalCondition){
         result=player;
         winning_consequence=[cells[occuppied_Cells[index].id].id,cells[occuppied_Cells[index].id+rows+1].id,cells[occuppied_Cells[index].id+2*(rows+1)].id]
-        debugger;
+        direction='LeftDiagonal';
 
       }
     }
@@ -58,17 +58,17 @@ let conditipnsFunction=(index,cells,occuppied_Cells,player,rows)=>{
    
         result=player;
         winning_consequence=[cells[occuppied_Cells[index].id].id,cells[occuppied_Cells[index].id+rows-1].id,cells[occuppied_Cells[index].id+2*(rows-1)].id]
-        debugger;
+        direction='RightDiagonal';
       }
     }
   }
-  return result;
+  return {player:result,winning_consequence:winning_consequence,direction:direction};
 }
  let CheckForVictory=(cells,occuppied_Cells,rows)=>{
   let result = null;
   for(let i=0;i<occuppied_Cells.length;i++){
     result =  conditipnsFunction(i,cells,occuppied_Cells,'cross',rows);
-   if(result){
+   if(result.player){
       break;
    }
   }
