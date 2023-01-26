@@ -8,7 +8,10 @@ let intialization={
     {whose:null,id:3},{whose:null,id:4},{whose:null,id:5},
     {whose:null,id:6},{whose:null,id:7},{whose:null,id:8},
   ],
-  occuppied_Cells:[],
+  occuppied_Cells:{
+    cross:[],
+    zero:[]
+  },
   rows:3,
   result:{
     player:null,
@@ -32,23 +35,29 @@ let cells_reducer=(State=intialization,action)=>{
             return c
           }
         }),
-        occuppied_Cells:[...State.occuppied_Cells , make_new_occypied_space('cross')]
+        occuppied_Cells:{
+          cross:[...State.occuppied_Cells.cross , make_new_occypied_space('cross')],
+          zero:State.occuppied_Cells.cross
+        }
       }
     case FILL_SPACE_WITH_ZERO:
       return{
         ...State,
         cells:State.cells.map((c)=>{
           if(c.id===action.id){
-            return {...c,whose:'cross'}
+            return {...c,whose:'zero'}
           }else{
             return c
           }
         }),
-        occuppied_Cells:[...State.occuppied_Cells , make_new_occypied_space('zero')]
+        occuppied_Cells:{
+          zero:[...State.occuppied_Cells.zero , make_new_occypied_space('zero')],
+          cross:State.occuppied_Cells.cross
+        }
       }
     case CHECK_FOR_VICTORY:
 
-      let result= CheckForVictory(State.cells,State.occuppied_Cells,State.rows);
+      let result= CheckForVictory(State.cells,State.occuppied_Cells.cross,State.rows);
       if(result.player =='cross' || result.player=='zero'){
         return{
           ...State,

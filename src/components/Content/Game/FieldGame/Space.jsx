@@ -1,17 +1,19 @@
 import classes from './FieldGame.module.scss';
 import { useMemo } from 'react';
-let CheckOccupiedCell=(id,array)=>{
+let CheckOccupiedCell=(id,object)=>{
   let IsOccupied=false;
-  for(let i=0;i<array.length;i++){
-    if(array[i].id ==id){
-      IsOccupied=true;
-      break;
+  for(let ii=0;ii<Object.values(object).length;ii++){
+    for(let i=0;i<Object.values(object)[ii].length;i++){
+      if(Object.values(object)[ii][i].id===id){
+        IsOccupied=true;
+        break;
+      }
     }
   }
   return IsOccupied;
 }
 let Space=(props)=>{
-  let IsOccupied =  CheckOccupiedCell(props.id,props.occuppied_Cells);
+  
   
   let Cases=[
     <img src='https://icons.veryicon.com/png/o/miscellaneous/medium-thin-linear-icon/cross-23.png'/>,
@@ -27,7 +29,9 @@ let lineCases=[
   <div className={classes.line + ' ' + classes.LeftDiagonal}></div>
 ]
 let FIll_SPACE_WITH_CROSS=()=>{
+  let IsOccupied =  CheckOccupiedCell(props.id,props.occuppied_Cells);
   if(!IsOccupied  & !props.result.player){
+    debugger;
     props.PlayersMoveThunk(props.id);
   }  
 }
