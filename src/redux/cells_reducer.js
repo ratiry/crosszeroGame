@@ -57,7 +57,7 @@ let cells_reducer=(State=intialization,action)=>{
       }
     case CHECK_FOR_VICTORY:
 
-      let result= CheckForVictory(State.cells,State.occuppied_Cells.cross,State.rows);
+      let result= CheckForVictory(State.cells,State.occuppied_Cells,State.rows);
       if(result.player =='cross' || result.player=='zero'){
         return{
           ...State,
