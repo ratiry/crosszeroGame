@@ -31,7 +31,6 @@ let lineCases=[
 let FIll_SPACE_WITH_CROSS=()=>{
   let IsOccupied =  CheckOccupiedCell(props.id,props.occuppied_Cells);
   if(!IsOccupied  & !props.result.player){
-    debugger;
     props.PlayersMoveThunk(props.id);
   }  
 }
