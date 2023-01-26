@@ -41,24 +41,22 @@ let conditipnsFunction=(index,cells,occuppied_Cells,player,rows)=>{
     }
     if(definedRightDiagonal){
       let RightDiagonalCondition = cells[occuppied_Cells[index].id +rows-1].whose==player & cells[occuppied_Cells[index].id +2*(rows-1)].whose==player;
-      let rowsArray=[cells[occuppied_Cells[index].id].id,cells[occuppied_Cells[index].id+rows-1].id,cells[occuppied_Cells[index].id+2*(rows-1)].id];
-      let NotOnOneRow=true;
-      let forbidden_array=[3,5];
-      let counter=0;
-      for(let i=0;i<rowsArray.length;i++){
-        if(rowsArray[i] ==forbidden_array[0] || rowsArray[i] ==forbidden_array[1]){
-          counter++;
-          if(counter==2){
-            NotOnOneRow=false;
-            break;
+      
+      if(RightDiagonalCondition ){
+        let rowsArray=[Math.floor(cells[occuppied_Cells[index].id].id/rows),Math.floor(cells[occuppied_Cells[index].id+rows-1].id/rows),Math.floor(cells[occuppied_Cells[index].id+2*(rows-1)].id/rows)];
+        let NotOnOneRow=true;
+        for(let i=0;i<rowsArray.length;i++){
+          for(let ii=0;ii<rowsArray.length;ii++){
+            if(rowsArray[i]==rowsArray[ii] & i!==ii){
+              NotOnOneRow=false;
+            }
           }
         }
-      }
-      if(RightDiagonalCondition & NotOnOneRow){
-   
-        result=player;
-        winning_consequence=[cells[occuppied_Cells[index].id].id,cells[occuppied_Cells[index].id+rows-1].id,cells[occuppied_Cells[index].id+2*(rows-1)].id]
-        direction='RightDiagonal';
+        if(NotOnOneRow){
+          result=player;
+          winning_consequence=[cells[occuppied_Cells[index].id].id,cells[occuppied_Cells[index].id+rows-1].id,cells[occuppied_Cells[index].id+2*(rows-1)].id]
+          direction='RightDiagonal';
+        }
       }
     }
   }
