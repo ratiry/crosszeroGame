@@ -6,6 +6,7 @@ import Footer from './components/Footer/Footer';
 import Game from './components/Content/Game/Game';
 import Welcome from './components/Content/Welcome/Welcome';
 import { useReducer } from 'react';
+import Results from './components/Content/Results/Results';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Routes>
               <Route path={'/'} element={<Welcome/>} />
               <Route path={'/Game' } element={<Game/>}/>
+              <Route path={'/Results'} element={<Results/>}/>
             </Routes>
           </div>
           <Footer/>
