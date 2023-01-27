@@ -4,4 +4,16 @@
   justify-content:space-between;
   align-items:center;
   height:100%;
+
+  .GetResultsButton{
+    min-width:10vw;  
+    background:yellow;
+    padding:10px;
+    border-radius:30px;
+    p{  
+      font-size:24px;
+      font-weight: bold;;
+    }
+  }
+  
 }

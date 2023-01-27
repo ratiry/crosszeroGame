@@ -1,17 +1,6 @@
 import classes from './FieldGame.module.scss';
 import { useMemo } from 'react';
-let CheckOccupiedCell=(id,object)=>{
-  let IsOccupied=false;
-  for(let ii=0;ii<Object.values(object).length;ii++){
-    for(let i=0;i<Object.values(object)[ii].length;i++){
-      if(Object.values(object)[ii][i].id===id){
-        IsOccupied=true;
-        break;
-      }
-    }
-  }
-  return IsOccupied;
-}
+import CheckOccupiedCell from '../../../../Helpers/CheckOccupiedCell';
 let Space=(props)=>{
   
   
