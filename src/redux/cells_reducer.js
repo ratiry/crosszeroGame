@@ -3,6 +3,7 @@ import ZerosCellPick from './../Helpers/ZerosCellPick';
 const FILL_SPACE_WITH_ZERO='FILL_SPACE_WITH_ZERO';
 const FILL_SPACE_WITH_CROSS='FILL_SPACE_WITH_CROSS';
 const CHECK_FOR_VICTORY='CHECK_FOR_VICTORY';
+const RETURN_TO_INTIAL_STATE='RETURN_TO_INTIAL_STATE';
 let intialization={
   cells:[
     {whose:null, id:0},{whose:null,id:1},{whose:null,id:2},
@@ -72,6 +73,14 @@ let cells_reducer=(State=intialization,action)=>{
       }else{
         return State
       }
+    case RETURN_TO_INTIAL_STATE:
+      return{
+        ...State,
+        cells:[...intialization.cells],
+        occuppied_Cells:{...intialization.occuppied_Cells},
+        rows:intialization.rows,
+        result:{...intialization.result}
+      }
     default: return State
   }
 }
@@ -92,5 +101,8 @@ export let FILL_SPACE_WITH_ZERO_AC=()=>({
 })
 export let CheckForVictoryAC=()=>({
   type:CHECK_FOR_VICTORY
+})
+export let ReturnToIntialStateAC=()=>({
+  type:RETURN_TO_INTIAL_STATE
 })
 export default cells_reducer;
