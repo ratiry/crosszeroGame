@@ -6,14 +6,12 @@ function getRandomArbitrary(min, max) {
 let ZerosCellPick=(cells,occuppied_Cells)=>{
   let IsApproved=false;
   let id=null;
-  if(cells.length!==(occuppied_Cells.cross.lenth+occuppied_Cells.zero.length)){
   while(!IsApproved){
     id=getRandomArbitrary(0,cells.length-1);
     let result=CheckOccupiedCell(id,occuppied_Cells);
     if(!result){
       IsApproved=true;
     }
-  }
   }
   return id;
 }

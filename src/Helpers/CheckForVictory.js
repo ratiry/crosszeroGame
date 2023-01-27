@@ -71,16 +71,20 @@ let conditipnsFunction=(index,cells,occuppied_Cells,player,rows)=>{
    }
   }
   if(result.player===null){
-    debugger;
     for(let i=0;i<occuppied_Cells.zero.length;i++){
       result =  conditipnsFunction(i,cells,occuppied_Cells.zero,'zero',rows);
      if(result.player){
-        debugger;
         break;
      }
     }
   }
-
+  if(cells.length==(occuppied_Cells.zero.length+occuppied_Cells.cross.length) & result.player==null){
+    result={
+      player:'tie',
+      winning_consequence:null,
+      direction:null
+    }
+  }
   return result;
 }
 

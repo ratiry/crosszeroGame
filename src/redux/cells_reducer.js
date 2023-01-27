@@ -42,8 +42,8 @@ let cells_reducer=(State=intialization,action)=>{
         }
       }
     case FILL_SPACE_WITH_ZERO:
-      let id=ZerosCellPick(State.cells,State.occuppied_Cells);
-      if(id){
+      if(State.result.player ===null){
+        let id=ZerosCellPick(State.cells,State.occuppied_Cells);
         return{
           ...State,
           cells:State.cells.map((c)=>{
@@ -59,13 +59,12 @@ let cells_reducer=(State=intialization,action)=>{
           }
         }  
       }else{
-        return State;
+        return State
       }
-      
     case CHECK_FOR_VICTORY:
 
       let result= CheckForVictory(State.cells,State.occuppied_Cells,State.rows);
-      if(result.player =='cross' || result.player=='zero'){
+      if(result.player =='cross' || result.player=='zero' || result.player=='tie'){
         return{
           ...State,
           result:result

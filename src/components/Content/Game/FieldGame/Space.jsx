@@ -34,7 +34,7 @@ let FIll_SPACE_WITH_CROSS=()=>{
     props.PlayersMoveThunk(props.id);
   }  
 }
-if(props.result.player){
+if(props.result.player=='zero' || props.result.player=='cross'){
   if(props.result.winning_consequence.some(id=>id===props.id)){
     if(props.result.direction==="horizontal"){
       lineCase=1;
