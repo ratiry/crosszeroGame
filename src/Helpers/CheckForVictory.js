@@ -70,7 +70,8 @@ let conditipnsFunction=(index,cells,occuppied_Cells,player,rows)=>{
       break;
    }
   }
-  if(!result){
+  if(result.player===null){
+    debugger;
     for(let i=0;i<occuppied_Cells.zero.length;i++){
       result =  conditipnsFunction(i,cells,occuppied_Cells.zero,'zero',rows);
      if(result.player){

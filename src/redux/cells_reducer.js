@@ -1,4 +1,5 @@
 import CheckForVictory from "../Helpers/CheckForVictory";
+import ZerosCellPick from './../Helpers/ZerosCellPick';
 const FILL_SPACE_WITH_ZERO='FILL_SPACE_WITH_ZERO';
 const FILL_SPACE_WITH_CROSS='FILL_SPACE_WITH_CROSS';
 const CHECK_FOR_VICTORY='CHECK_FOR_VICTORY';
@@ -21,9 +22,9 @@ let intialization={
 }
 
 let cells_reducer=(State=intialization,action)=>{
-  let make_new_occypied_space=(whose)=>({
-    whose:whose,
-    id:action.id
+  let make_new_occypied_space=(whose,id)=>({
+    whose,
+    id
   })
   switch(action.type){
     case FILL_SPACE_WITH_CROSS:
@@ -36,25 +37,31 @@ let cells_reducer=(State=intialization,action)=>{
           }
         }),
         occuppied_Cells:{
-          cross:[...State.occuppied_Cells.cross , make_new_occypied_space('cross')],
-          zero:State.occuppied_Cells.cross
+          cross:[...State.occuppied_Cells.cross , make_new_occypied_space('cross',action.id)],
+          zero:State.occuppied_Cells.zero
         }
       }
     case FILL_SPACE_WITH_ZERO:
-      return{
-        ...State,
-        cells:State.cells.map((c)=>{
-          if(c.id===action.id){
-            return {...c,whose:'zero'}
-          }else{
-            return c
+      let id=ZerosCellPick(State.cells,State.occuppied_Cells);
+      if(id){
+        return{
+          ...State,
+          cells:State.cells.map((c)=>{
+            if(c.id===id){
+              return {...c,whose:'zero'}
+            }else{
+              return c
+            }
+          }),
+          occuppied_Cells:{
+            zero:[...State.occuppied_Cells.zero , make_new_occypied_space('zero',id)],
+            cross:State.occuppied_Cells.cross
           }
-        }),
-        occuppied_Cells:{
-          zero:[...State.occuppied_Cells.zero , make_new_occypied_space('zero')],
-          cross:State.occuppied_Cells.cross
-        }
+        }  
+      }else{
+        return State;
       }
+      
     case CHECK_FOR_VICTORY:
 
       let result= CheckForVictory(State.cells,State.occuppied_Cells,State.rows);
@@ -73,14 +80,16 @@ let cells_reducer=(State=intialization,action)=>{
 export let PlayersMoveThunk=(id)=>(dispatch)=>{
   dispatch(FILL_SPACE_WITH_CROSS_AC(id));
   dispatch(CheckForVictoryAC());
+  dispatch(FILL_SPACE_WITH_ZERO_AC());
+  dispatch(CheckForVictoryAC());
 }
 export let FILL_SPACE_WITH_CROSS_AC=(id)=>({
   type:FILL_SPACE_WITH_CROSS,
   id
 })
-export let FILL_SPACE_WITH_ZERO_AC=(id)=>({
+export let FILL_SPACE_WITH_ZERO_AC=()=>({
   type:FILL_SPACE_WITH_ZERO,
-  id
+  
 })
 export let CheckForVictoryAC=()=>({
   type:CHECK_FOR_VICTORY
