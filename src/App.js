@@ -7,6 +7,7 @@ import Game from './components/Content/Game/Game';
 import Welcome from './components/Content/Welcome/Welcome';
 import { useReducer } from 'react';
 import Results from './components/Content/Results/Results';
+import NotFound from './components/Content/NotFound/NotFound';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
               <Route path={'/'} element={<Welcome/>} />
               <Route path={'/Game' } element={<Game/>}/>
               <Route path={'/Results'} element={<Results/>}/>
+              <Route path={'*'} element={<NotFound/>} />
             </Routes>
           </div>
           <Footer/>
