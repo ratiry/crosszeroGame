@@ -11,7 +11,7 @@ let Welcome=()=>{
           Hello, BlaBlaBla
         </p>
         <p>
-          Do you dare to challenge the dumbest computer player of tic tac toe?
+          Do you dare to < strong>lose</strong>  to the dumbest computer player of tic tac toe?
         </p>
         <button className={classes.Start_button} onClick={()=> Setredirect(true)}><span>Just Do it</span></button>
       </div>
