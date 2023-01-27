@@ -6,6 +6,7 @@ import classes from './Results.module.scss';
 import DeclaringResults from './Declaring_Results/DeclaringResults';
 import HomeButton from './Buttons/HomeButton';
 import RestartButton from './Buttons/RestartButton';
+import { ReturnToIntialStateAC } from './../../../redux/cells_reducer';
 let Results=(props)=>{
   let [shouldNavigate,setShouldNavigate]=useState(false);
   useEffect(()=>{
@@ -22,13 +23,15 @@ let Results=(props)=>{
       <h1>Results</h1>
       <DeclaringResults result={props.result}/>
       <div className={classes.buttonsContainer}>
-        <HomeButton/>
-        <RestartButton/>
+        <HomeButton />
+        <RestartButton ReturnToIntialStateAC={props.ReturnToIntialStateAC} />
       </div>
     </div>
   )
 }
-let mapDispatchToProps={};
+let mapDispatchToProps={
+  ReturnToIntialStateAC
+};
 let mapStateToProps=(State)=>({
   result:State.cellsState.result.player
 })
