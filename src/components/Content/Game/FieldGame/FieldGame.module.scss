@@ -1,8 +1,8 @@
 .GameField{
   display:grid;
-  grid-template-columns: repeat(3,150px);
+  grid-template-columns: repeat(3,10vh);
   height:100%;
-  grid-template-rows:repeat(3,150px);
+  grid-template-rows:repeat(3,10vh);
   .Space{
     background:white;
     border:5px solid black;
