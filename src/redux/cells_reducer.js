@@ -3,6 +3,7 @@ import ZerosCellPick from './../Helpers/ZerosCellPick';
 const FILL_SPACE_WITH_ZERO='FILL_SPACE_WITH_ZERO';
 const FILL_SPACE_WITH_CROSS='FILL_SPACE_WITH_CROSS';
 const CHECK_FOR_VICTORY='CHECK_FOR_VICTORY';
+const SWITCH_CROSS_TO_ZERO='SWITCH_CROSS_TO_ZERO';
 const RETURN_TO_INTIAL_STATE='RETURN_TO_INTIAL_STATE';
 let intialization={
   cells:[
@@ -78,6 +79,29 @@ let cells_reducer=(State=intialization,action)=>{
         ...State,
         cells:[...intialization.cells],
         occuppied_Cells:{...intialization.occuppied_Cells},
+        rows:intialization.rows,
+        result:{...intialization.result}
+      }
+    case SWITCH_CROSS_TO_ZERO:
+      return{
+        ...State,
+        cells:[...State.cells.map((c)=>{
+          if(c.whose=='cross'){
+            return{...c,whose:'zero'}
+          }else if(c.whose =='zero'){
+            return{...c,whose:'cross'}
+          }else{
+            return c
+          }
+        })],
+        occuppied_Cells:{
+          zero:[...State.occuppied_Cells.cross.map((c)=>{
+           return {...c,whose:'zero'}
+          })],
+          cross:[...State.occuppied_Cells.zero.map((c)=>{
+            return{ ...c,whose:'cross'}
+          })]
+        },
         rows:intialization.rows,
         result:{...intialization.result}
       }
