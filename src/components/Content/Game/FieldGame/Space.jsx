@@ -21,7 +21,9 @@ let FIll_SPACE_WITH_CROSS=()=>{
   let IsOccupied =  CheckOccupiedCell(props.id,props.occuppied_Cells);
   if(!IsOccupied  & !props.result.player){
     props.PlayersMoveThunk(props.id);
-  }  
+  }else if(props.whose=='zero' &!props.result.player){
+    props.SWITCH_CROSS_TO_ZERO_AC();
+  }
 }
 if(props.result.player=='zero' || props.result.player=='cross'){
   if(props.result.winning_consequence.some(id=>id===props.id)){

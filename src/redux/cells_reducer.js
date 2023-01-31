@@ -121,7 +121,9 @@ export let FILL_SPACE_WITH_CROSS_AC=(id)=>({
 })
 export let FILL_SPACE_WITH_ZERO_AC=()=>({
   type:FILL_SPACE_WITH_ZERO,
-  
+})
+export let SWITCH_CROSS_TO_ZERO_AC=()=>({
+  type:SWITCH_CROSS_TO_ZERO
 })
 export let CheckForVictoryAC=()=>({
   type:CHECK_FOR_VICTORY
